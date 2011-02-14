@@ -1,0 +1,13 @@
+class CriarAlunos < ActiveRecord::Migration
+  def self.up
+    create_table :alunos do |t|
+      t.string :nome
+      t.string :matricula
+    end
+  end
+
+  def self.down
+    drop_table :alunos
+  end
+end
+

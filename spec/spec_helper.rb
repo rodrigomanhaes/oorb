@@ -1,6 +1,10 @@
 require 'database_cleaner'
 
 RSpec.configure do |config|
+  Dir[File.expand_path(__FILE__ + '/../..') + '/domain/**/*.rb'].each do |f|
+    require f
+  end
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
@@ -14,4 +18,3 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
-

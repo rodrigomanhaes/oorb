@@ -14,8 +14,10 @@ task :rollback => :environment do
 end
 
 task :environment do
-  ActiveRecord::Base.establish_connection(
-    YAML::load(File.open('./config/database.yml')))
-  ActiveRecord::Base.logger = Logger.new(File.open('./log/database.log', 'a'))
+	['test', 'development'].each do |env|
+	  ActiveRecord::Base.establish_connection(
+	    YAML::load(File.open('./config/database.yml'))[env])
+	  ActiveRecord::Base.logger = Logger.new(File.open("./log/#{env}_database.log", 'a'))
+	end
 end
 

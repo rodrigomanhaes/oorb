@@ -1,5 +1,7 @@
 require 'database_cleaner'
 
+DB = 'test'
+
 RSpec.configure do |config|
   Dir[File.expand_path(__FILE__ + '/../..') + '/domain/**/*.rb'].each do |f|
     require f
